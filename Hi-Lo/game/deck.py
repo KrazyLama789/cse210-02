@@ -16,14 +16,12 @@ class Deck:
         roll_suit = random.randint(1,4) 
 
         if roll_suit == 1:
-            self.suit = '\u2666'
+            self.suit = '\u2666' # Diamond
         elif roll_suit == 2:
-            self.suit = '\u2665'
+            self.suit = '\u2665' # Heart
         elif roll_suit == 3:
-            self.suit = '\u2663'
+            self.suit = '\u2663' # Club
         elif roll_suit ==4:
-            self.suit = '\u2660'
+            self.suit = '\u2660' # Spade
         return self.suit
-      
-        
 

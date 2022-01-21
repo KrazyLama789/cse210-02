@@ -21,7 +21,7 @@ The project files and folders are organized as follows:
 root                    (project root folder)
 +-- Hi-Lo               (source code for game)
   +-- game              (specific classes)
-  +-- __main__.py       (program entry point)
+  +-- main.py       (program entry point)
 +-- README.md           (general info)
 ```
 

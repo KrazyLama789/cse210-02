@@ -1,5 +1,6 @@
 from game.deck import Deck
 
+
 class Director:
     # The backbone of the program which controls the sequence of play.
 
@@ -10,27 +11,33 @@ class Director:
     #     score (int): The score current score of the player.
     #     guess (str): The players guess of higher or lower
     #     draw (int, str): The face up card that's drawn after the player guesses
-    
+    #     is_playing_suits (boolean): Whether or not the game is in suits mode.
+    #     guess_suit (str): The players guess of suit.
+    #     draw_suit (str): The generated suit.
+    #     turn_score (int): The turn score earned by correct high low guess.
+
     def __init__(self):
         # Constructs a new Director.
         # Args: self (Director): an instance of Director.
         
         self.deck = Deck()
         self.is_playing = True
-        self.is_playing_suits = False
         self.initial_card = self.deck.draw()
         self.score = 300 # for starting value.
         self.guess = ''
         self.draw = 0
+        self.is_playing_suits = False
         self.guess_suit = ''
         self.draw_suit = ''
         self.turn_score = 0
 
     def start_game(self):
         # Starts the game by running the main game loop.
+        # Optional: Asks if they want to play suits mode.
+        # Updates the self.is_playing_suits attribute.
         # Args: self (Director): an instance of Director.
         
-        suits = input('\nDo you want to play with suits? [y/n] ')
+        suits = input('\nDo you want to play suits mode? [y/n] ')
         self.is_playing_suits = (suits == "y")
         
         while self.is_playing:
@@ -40,6 +47,9 @@ class Director:
 
     def get_inputs(self):
         # Asks the player to guess if the next card will be higher or lower.
+        # Generates a card, and updates the corrisponding attribute.
+        # If suits: If player is playing suits, ask which suit they guess.
+        # If suits: Generates a suit, and updates the corrisponding attribute.
         # Args: self (Director): An instance of Director.
        
         print(f"\nThe card is: {self.initial_card}")
@@ -52,6 +62,7 @@ class Director:
     
     def do_updates(self):
         # Updates the player's score.
+        # If suits: Doubles the player's turn score, if they guess the right suit.
         # Args: self (Director): An instance of Director.
         
         print(f"Your card is: {self.draw} {self.draw_suit}") 
@@ -86,8 +97,8 @@ class Director:
         if not self.is_playing:
             return
         
-        print(f"Your score is: {self.score}\n")
-        play_again = input("Play again? [y/n] ")
+        print(f"Your score is: {self.score}")
+        play_again = input("\nPlay again? [y/n] ")
               
         if play_again == 'n':
             self.is_playing = False

@@ -8,9 +8,9 @@ class Director:
     The responsibility of a Director is to control the sequence of play.
 
     Attributes:
-        dice (List[Die]): A list of Die instances. -> deck (Deck): An instence of Deck
+        deck (class): An instence of Deck
         is_playing (boolean): Whether or not the game is being played.
-        new -> current_card (int): The current face up card.
+        current_card (int): The current face up card.
         score (int): The score for one round of play.
         total_score (int): The score for the entire game.
     """

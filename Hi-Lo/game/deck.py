@@ -7,7 +7,7 @@ class Deck:
         self.value = 0
         self.suit = ''
         
-    def value(self): # generate the card numbers and returns it
+    def draw(self): # generate the card numbers and returns it
         self.value = random.randint(1,13)
         return self.value
     

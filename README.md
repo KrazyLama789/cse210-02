@@ -38,4 +38,4 @@ CSE210Thursday@2pm (TEAM B)
 * Jennifer Walton
 * Camden Miller
 * Kosei Kameta
-Cyrille Nana Nfonga
+* Cyrille Nana Nfonga

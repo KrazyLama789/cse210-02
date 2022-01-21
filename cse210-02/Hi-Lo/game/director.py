@@ -27,8 +27,13 @@ class Director:
         # Starts the game by running the main game loop.
         # Args: self (Director): an instance of Director.
         
+        suits = input('Do you want to play with suits? [y/n] ')
+        hard_mode = (suits == "y")
+        
         while self.is_playing:
             self.get_inputs()
+            if hard_mode == True:
+                self.do_suits
             self.do_updates()
             self.do_outputs()
 
@@ -39,6 +44,8 @@ class Director:
         print(f"\nThe card is: {self.initial_card}")
         self.guess = input("Higher or lower? [h/l] ")
         
+    def do_suits(self):
+        pass       
     
     def do_updates(self):
         # Updates the player's score.

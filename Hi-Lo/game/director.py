@@ -24,10 +24,14 @@ class Director:
         self.draw = 0
         self.guess_suit = ''
         self.draw_suit = ''
+        self.turn_score = 0
 
     def start_game(self):
         # Starts the game by running the main game loop.
         # Args: self (Director): an instance of Director.
+        
+        suits = input('\nDo you want to play with suits? [y/n] ')
+        self.is_playing_suits = (suits == "y")
         
         while self.is_playing:
             self.get_inputs()
@@ -37,16 +41,13 @@ class Director:
     def get_inputs(self):
         # Asks the player to guess if the next card will be higher or lower.
         # Args: self (Director): An instance of Director.
-        
-        suits = input('Do you want to play with suits? [y/n] ')
-        self.is_playing_suits = (suits == "y")
        
         print(f"\nThe card is: {self.initial_card}")
         self.guess = input("Higher or lower? [h/l] ")
         self.draw = self.deck.draw()
         
         if self.is_playing_suits == True:
-            self.guess_suit = input('Spade, clover, heart, or diamond? \n[s/c/h/d] ')
+            self.guess_suit = input('Diamond, heart, club, or spade? \n[d/h/c/s] ')
             self.draw_suit = self.deck.suit_selector()
     
     def do_updates(self):
@@ -56,11 +57,24 @@ class Director:
         print(f"Your card is: {self.draw} {self.draw_suit}") 
     
         if self.guess == "h" and self.draw >= self.initial_card:
-            self.score += 100
+            self.turn_score = 100
+            self.score += self.turn_score
         elif self.guess == "l" and self.draw <= self.initial_card:
-            self.score += 100
+            self.turn_score = 100
+            self.score += self.turn_score
         else:
             self.score -= 75
+            self.turn_score = 0
+        
+        if self.is_playing_suits == True:
+            if self.guess_suit == "d" and self.draw_suit == '\u2666':
+                self.score += self.turn_score
+            elif self.guess_suit == "h" and self.draw_suit == '\u2665':
+                self.score += self.turn_score
+            elif self.guess_suit == "c" and self.draw_suit == '\u2663':
+                self.score += self.turn_score
+            elif self.guess_suit == "s" and self.draw_suit == '\u2660':
+                self.score += self.turn_score
         
         if self.score <= 0:
             self.is_playing = False

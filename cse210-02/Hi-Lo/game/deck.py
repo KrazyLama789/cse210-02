@@ -11,7 +11,7 @@ class Deck:
         self.value = random.randint(1,13)
         return self.value
     
-          
+
     def suit_selector(self): # method that generates and returns a random suit 
         roll_suit = random.randint(1,4) 
 
@@ -24,13 +24,6 @@ class Deck:
         elif roll_suit ==4:
             self.suit = '\u2660'
         return self.suit
+      
         
-        
-
-        
-    def suite(self):
-        roll = random.randint(1,4)
-        self.suite = roll
-
-        return self.suite
 

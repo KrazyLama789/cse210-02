@@ -1,6 +1,12 @@
 from game.deck import Deck
 
-# To start with, I've copied the Director file from the dice came that we are allowed to use
+# To start with, I've copied the Director file from the dice came that we are allowed to use.
+
+# The card is:
+# Higher or lower? [h/l]
+# Next card was:
+# Your score is:
+# Play again? [y/n]
 
 class Director:
     """A person who directs the game. 

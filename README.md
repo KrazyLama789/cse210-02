@@ -2,7 +2,7 @@
 Week 3 Team Project
 
 # Hi-Lo
-Play Hi-Lo, and you might be surprised. The rules are simple. Pull the card. Guess the number of the card and answer with Hi or Lo. If you answer correctly, you will get additional 100 points to the initial points of 300. If you fail to guess correctly, you will lose 75 points. The game also prompts the user to guess the suit of the card. If your answer is correct, your points will be doubled. 
+Play Hi-Lo, and you might be surprised. The rules are simple. Pull the card. Guess if the number of the next card will be higher or lower. If you guess right, you will get 100 points, if you guess wrong you loose 75 points. The game also prompts the user to guess the suit of the card, and if your answer is correct, you earn points doubled. 
 
 ## Getting Started
 ---

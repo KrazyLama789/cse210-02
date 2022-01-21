@@ -2,12 +2,6 @@ from game.deck import Deck
 
 # To start with, I've copied the Director file from the dice came that we are allowed to use.
 
-# The card is:
-# Higher or lower? [h/l]
-# Next card was:
-# Your score is:
-# Play again? [y/n]
-
 class Director:
     """A person who directs the game. 
     
@@ -16,9 +10,9 @@ class Director:
     Attributes:
         deck (class): An instence of Deck
         is_playing (boolean): Whether or not the game is being played.
-        current_card (int): The current face up card.
+        initial_card (int): The starting face up card.
         score (int): The score for one round of play.
-        total_score (int): The score for the entire game.
+        score (int): The score for the entire game.
     """
 
     def __init__(self):
@@ -29,9 +23,10 @@ class Director:
         """
         self.deck = Deck()
         self.is_playing = True
-        self.current_card = 0
-        self.score = 0
-        self.total_score = 300 # for starting value.
+        self.initial_card = self.deck.draw()
+        self.score = 300 # for starting value.
+        self.guess = ''
+        self.draw = 0
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -45,33 +40,34 @@ class Director:
             self.do_outputs()
 
     def get_inputs(self):
-        """Ask the user if they want to roll.
+        """Ask the user to self.guess higher or lower.
 
         Args:
             self (Director): An instance of Director.
         """
-        draw_card = input("Draw a card? [y/n] ") 
-        self.is_playing = (draw_card == "y")
+        print(f"\nThe card is: {self.initial_card}")
+        self.guess = input("Higher or lower? [h/l] ")
         
-       
+    
     def do_updates(self):
         """Updates the player's score.
 
         Args:
             self (Director): An instance of Director.
         """
-        if not self.is_playing:
-            return 
+        self.draw = self.deck.draw()
+        print(f"Next card is: {self.draw}") 
+    
+        if self.guess == "h" and self.draw >= self.initial_card:
+            self.score += 100
+        elif self.guess == "l" and self.draw <= self.initial_card:
+            self.score += 100
+        else:
+            self.score -= 75
         
-        self.score = 0
-
-        for i in range(len(self.dice)):
-            die = self.dice[i]
-            die.roll()
-            self.score += die.points 
-        self.total_score += self.score
-        
-        
+        if self.score <= 0:
+            self.is_playing = False
+                           
 
     def do_outputs(self):
         """Displays the dice and the score. Also asks the player if they want to roll again. 
@@ -82,12 +78,14 @@ class Director:
         if not self.is_playing:
             return
         
-        values = ""
-        for i in range(len(self.dice)):
-            die = self.dice[i]
-            values += f"{die.value} "
+        print(f"Your score is: {self.score}\n")
+        play_again = input("Play again? [y/n] ")
+              
+        if play_again == 'n':
+            self.is_playing = False
+        else:
+            self.initial_card = self.draw
+       
 
-        print(f"You drew: {values}")
-        print(f"Your score is: {self.total_score}\n")
-        self.is_playing = (self.score > 0)
+        
         

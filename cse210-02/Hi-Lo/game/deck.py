@@ -21,9 +21,11 @@ class Deck:
         elif roll in range (40,52):
             self.value = roll - 39
             self.suit = '\u2660'
-        else:
-            self.value = 0
-            self.suit = None
+        # else:
+        #     self.value = 0
+        #     self.suit = None
+
+        return self.value
 
         
 

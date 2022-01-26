@@ -7,8 +7,6 @@ class Deck:
     # returns data to be used in the director class
     
     def __init__(self): # creates the instance of the deck
-        # self.draw
-        # self.suit_selector
         self.value = 0
         self.suit = ''
         
@@ -21,12 +19,12 @@ class Deck:
         roll_suit = random.randint(1,4) 
 
         if roll_suit == 1:
-            self.suit = '\033[31m'+'\u2666'+'\033[0m' # Diamond
+            self.suit = '\u2666' # Diamond
         elif roll_suit == 2:
-            self.suit = '\033[31m'+'\u2665'+'\033[0m' # Heart
+            self.suit = '\u2665' # Heart
         elif roll_suit == 3:
-            self.suit = '\033[32m'+'\u2663'+'\033[0m' # Club
+            self.suit = '\u2663' # Club
         elif roll_suit ==4:
-            self.suit = '\033[36m'+'\u2660'+'\033[0m' # Spade
+            self.suit = '\u2660' # Spade
         return self.suit
 

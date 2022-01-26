@@ -1,14 +1,14 @@
 from logging import raiseExceptions
 import random
 
-class Deck:
+class Card:
     # class that creates an instance of the deck
     # Draws a random card and applies a random suit to said card via the suit selector method
     # returns data to be used in the director class
     
     def __init__(self): # creates the instance of the deck
-        self.value = 0
-        self.suit = ''
+        self.draw()
+        self.suit_selector()
         
     def draw(self): # generate the card numbers and returns it
         self.value = random.randint(1,13)

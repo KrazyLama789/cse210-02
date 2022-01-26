@@ -1,13 +1,13 @@
-from game.deck import Deck
+from game.card import Card
 
 
 class Director:
     # The backbone of the program which controls the sequence of play.
 
     # Attributes:
-    #     deck (class): An instence of Deck
+    #     card (class): An instence of Card
     #     is_playing (boolean): Whether or not the game is being played.
-    #     initial_card (int, str): The starting face up card using the Deck method draw.
+    #     initial_card (int, str): The starting face up card using the Card method: draw.
     #     score (int): The score current score of the player.
     #     guess (str): The players guess of higher or lower
     #     draw (int, str): The face up card that's drawn after the player guesses
@@ -20,9 +20,9 @@ class Director:
         # Constructs a new Director.
         # Args: self (Director): an instance of Director.
         
-        self.deck = Deck()
+        self.card = Card()
         self.is_playing = True
-        self.initial_card = self.deck.draw()
+        self.initial_card = self.card.draw()
         self.score = 300 # for starting value.
         self.guess = ''
         self.draw = 0
@@ -54,11 +54,11 @@ class Director:
        
         print(f"\nThe card is: {self.initial_card}")
         self.guess = input("Higher or lower? [h/l] ")
-        self.draw = self.deck.draw()
+        self.draw = self.card.draw()
         
         if self.is_playing_suits == True:
             self.guess_suit = input('Diamond, heart, club, or spade? \n[d/h/c/s] ')
-            self.draw_suit = self.deck.suit_selector()
+            self.draw_suit = self.card.suit_selector()
     
     def do_updates(self):
         # Updates the player's score.

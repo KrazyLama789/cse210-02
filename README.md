@@ -26,6 +26,8 @@ The project files and folders are organized as follows:
 root                    (project root folder)
 +-- Hi-Lo               (source code for game)
   +-- game              (specific classes)
+    +-- card.py         (generates a random card)
+    +-- director.py     (directs the use of the card class and keeps track of the score)
   +-- main.py           (program entry point)
 +-- README.md           (general info)
 ```

@@ -43,4 +43,4 @@ CSE210Thursday@2pm (TEAM B)
 * Jennifer Walton
 * Camden Miller
 * Kosei Kameta <kkameta@kt.rim.or.jp>
-* Cyrille Nana Nfonga
+* (Cyrille Nana Nfonga)

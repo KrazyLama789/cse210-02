@@ -5,16 +5,16 @@ class Director:
     # The backbone of the program which controls the sequence of play.
 
     # Attributes:
-    #     card (class): An instence of Card
+    #     card (class): An instance of Card
     #     is_playing (boolean): Whether or not the game is being played.
     #     initial_card (int, str): The starting face up card using the Card method: draw.
-    #     score (int): The score current score of the player.
+    #     score (int): The score of the player.
     #     guess (str): The players guess of higher or lower
     #     draw (int, str): The face up card that's drawn after the player guesses
     #     is_playing_suits (boolean): Whether or not the game is in suits mode.
     #     guess_suit (str): The players guess of suit.
     #     draw_suit (str): The generated suit.
-    #     turn_score (int): The turn score earned by correct high low guess.
+    #     turn_score (int): The turn score earned by correct high/ low guess.
 
     def __init__(self):
         # Constructs a new Director.
@@ -22,7 +22,7 @@ class Director:
 
         self.card = Card()
         self.is_playing = True
-        self.initial_card = self.card.draw()
+        self.initial_card = self.card.draw() 
         self.score = 300  # for starting value.
         self.turn_score = 0
         self.guess = ''
@@ -49,7 +49,7 @@ class Director:
     def get_inputs(self):
         # Asks the player to guess if the next card will be higher or lower.
         # Generates a new card.
-        # Makes sure the new card isnt the old card.
+        # Makes sure the new card isn't the old card.
         # Updates the self.draw with the new card.
         # If suits: If player is playing suits, ask which suit they guess.
         # If suits: Generates a suit, and updates the corrisponding attribute.
@@ -66,6 +66,13 @@ class Director:
         # Initializes the new card number and suit.
         self.draw = check_card
         self.draw_suit = self.card.suit_selector()
+        new_card = self.card.draw()
+        
+        # Verifies that the new card isn't the same as the previous card.
+        while new_card == self.initial_card:
+            new_card = self.card.draw()
+        
+        self.draw = new_card
 
         if self.is_playing_suits == True:
             self.guess_suit = input(
@@ -78,10 +85,10 @@ class Director:
 
         print(f"Your card is: {self.draw} {self.draw_suit}")
 
-        if self.guess == "h" and self.draw >= self.initial_card:
+        if self.guess == "h" and self.draw > self.initial_card:
             self.turn_score = 100
             self.score += self.turn_score
-        elif self.guess == "l" and self.draw <= self.initial_card:
+        elif self.guess == "l" and self.draw < self.initial_card:
             self.turn_score = 100
             self.score += self.turn_score
         else:

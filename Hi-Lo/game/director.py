@@ -24,12 +24,13 @@ class Director:
         self.is_playing = True
         self.initial_card = self.card.draw()
         self.score = 300  # for starting value.
+        self.turn_score = 0
         self.guess = ''
         self.draw = 0
         self.is_playing_suits = False
+        self.initial_suit = self.card.suit_selector()
         self.guess_suit = ''
         self.draw_suit = ''
-        self.turn_score = 0
 
     def start_game(self):
         # Starts the game by running the main game loop.
@@ -54,18 +55,21 @@ class Director:
         # If suits: Generates a suit, and updates the corrisponding attribute.
         # Args: self (Director): An instance of Director.
 
-        print(f"\nThe card is: {self.initial_card}")
+        print(f"\nThe card is: {self.initial_card} {self.initial_suit}")
         self.guess = input("Higher or lower? [h/l] ")
-        new_card = self.card.draw()
-        
+
         # Varifys new card isnt the same as the previous card.
-        while new_card == self.initial_card:
-            new_card = self.card.draw()
-        self.draw = new_card
+        check_card = self.card.draw()
+        while check_card == self.initial_card:
+            check_card = self.card.draw()
+
+        # Initializes the new card number and suit.
+        self.draw = check_card
+        self.draw_suit = self.card.suit_selector()
 
         if self.is_playing_suits == True:
-            self.guess_suit = input('Diamond, heart, club, or spade? \n[d/h/c/s] ')
-            self.draw_suit = self.card.suit_selector()
+            self.guess_suit = input(
+                'Diamond, heart, club, or spade? \n[d/h/c/s] ')
 
     def do_updates(self):
         # Updates the player's score.
@@ -111,3 +115,4 @@ class Director:
             self.is_playing = False
         else:
             self.initial_card = self.draw
+            self.initial_suit = self.draw_suit

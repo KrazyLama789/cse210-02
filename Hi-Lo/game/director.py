@@ -50,7 +50,7 @@ class Director:
         # Asks the player to guess if the next card will be higher or lower.
         # Generates a new card.
         # Makes sure the new card isn't the old card.
-        # Updates the self.draw with the new card.
+        # Updates the new card number and suit.
         # If suits: If player is playing suits, ask which suit they guess.
         # If suits: Generates a suit, and updates the corrisponding attribute.
         # Args: self (Director): An instance of Director.
@@ -63,16 +63,9 @@ class Director:
         while check_card == self.initial_card:
             check_card = self.card.draw()
 
-        # Initializes the new card number and suit.
+        # Updates the new card number and suit.
         self.draw = check_card
         self.draw_suit = self.card.suit_selector()
-        new_card = self.card.draw()
-        
-        # Verifies that the new card isn't the same as the previous card.
-        while new_card == self.initial_card:
-            new_card = self.card.draw()
-        
-        self.draw = new_card
 
         if self.is_playing_suits == True:
             self.guess_suit = input(
